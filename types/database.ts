@@ -331,6 +331,36 @@ export type Database = {
           },
         ]
       }
+      waitlist: {
+        Row: {
+          id: string
+          email: string
+          name: string | null
+          source: string
+          notified: boolean
+          converted: boolean
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          email: string
+          name?: string | null
+          source?: string
+          notified?: boolean
+          converted?: boolean
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          email?: string
+          name?: string | null
+          source?: string
+          notified?: boolean
+          converted?: boolean
+          created_at?: string
+        }
+        Relationships: []
+      }
       order_items: {
         Row: {
           id: string

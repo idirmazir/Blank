@@ -18,15 +18,15 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Blank",
+    default: "Blank — Substance over status.",
     template: "%s | Blank",
   },
   description:
-    "A lean Australian storefront for everyday essentials — simple shop, fast checkout.",
+    "No logos. No slogans. No status symbols. Only substance. Blank curates exceptional essentials sourced directly from manufacturers.",
   openGraph: {
-    title: "Blank",
+    title: "Blank — Substance over status.",
     description:
-      "A lean Australian storefront for everyday essentials — simple shop, fast checkout.",
+      "No logos. No slogans. No status symbols. Only substance. Curated essentials sourced directly from makers.",
     locale: "en_AU",
     type: "website",
   },

@@ -13,13 +13,13 @@ const navLinks = [
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+    <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4">
-        <div className="flex items-center gap-8">
-          <Link href="/" className="text-lg font-semibold tracking-tight">
+        <div className="flex items-center gap-10">
+          <Link href="/" className="text-lg font-semibold tracking-[0.2em] uppercase">
             Blank
           </Link>
-          <nav className="flex items-center gap-4 text-sm sm:gap-6">
+          <nav className="hidden items-center gap-6 text-sm sm:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -37,6 +37,19 @@ export function Header() {
           <CartDrawer />
         </div>
       </div>
+
+      {/* Mobile nav */}
+      <nav className="flex items-center gap-6 px-4 pb-2 text-sm sm:hidden">
+        {navLinks.map((link) => (
+          <Link
+            key={link.href}
+            href={link.href}
+            className="text-muted-foreground transition-colors hover:text-foreground"
+          >
+            {link.label}
+          </Link>
+        ))}
+      </nav>
     </header>
   );
 }
