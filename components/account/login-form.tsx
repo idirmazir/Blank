@@ -28,7 +28,8 @@ export function LoginForm() {
     setMessage(null);
 
     const supabase = createClient();
-    const redirectTo = `${window.location.origin}/auth/callback?next=${encodeURIComponent(searchParams.get("next") || "/account/orders")}`;
+        const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || window.location.origin;
+        const redirectTo = `${siteUrl}/auth/confirm?next=${encodeURIComponent(searchParams.get("next") || "/account/orders")}`;
 
     if (mode === "magic") {
       const { error: signInError } = await supabase.auth.signInWithOtp({

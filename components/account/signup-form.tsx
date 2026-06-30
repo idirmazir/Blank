@@ -28,11 +28,12 @@ export function SignUpForm() {
     }
 
     const supabase = createClient();
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || window.location.origin;
     const { error: signUpError } = await supabase.auth.signUp({
       email,
       password,
       options: {
-        emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(searchParams.get("next") || "/account/orders")}`,
+        emailRedirectTo: `${siteUrl}/auth/confirm?next=${encodeURIComponent(searchParams.get("next") || "/account/orders")}`,
       },
     });
 
