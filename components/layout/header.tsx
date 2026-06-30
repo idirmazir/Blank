@@ -5,30 +5,21 @@ import Link from "next/link";
 import { CartDrawer } from "@/components/cart/cart-drawer";
 import { HeaderAuth } from "@/components/layout/header-auth";
 
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/shop", label: "Shop" },
-  { href: "/cart", label: "Cart" },
-];
-
 export function Header() {
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur-md">
-      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4">
-        <div className="flex items-center gap-10">
-          <Link href="/" className="text-lg font-semibold tracking-[0.2em] uppercase">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/70 backdrop-blur-xl">
+      <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
+        <div className="flex items-center gap-8">
+          <Link href="/" className="text-sm font-semibold uppercase tracking-[0.2em]">
             Blank
           </Link>
           <nav className="hidden items-center gap-6 text-sm sm:flex">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-muted-foreground transition-colors hover:text-foreground"
-              >
-                {link.label}
-              </Link>
-            ))}
+            <Link href="/" className="text-muted-foreground transition-colors hover:text-foreground">
+              Home
+            </Link>
+            <Link href="/shop" className="text-muted-foreground transition-colors hover:text-foreground">
+              Shop
+            </Link>
           </nav>
         </div>
 
@@ -40,15 +31,15 @@ export function Header() {
 
       {/* Mobile nav */}
       <nav className="flex items-center gap-6 px-4 pb-2 text-sm sm:hidden">
-        {navLinks.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className="text-muted-foreground transition-colors hover:text-foreground"
-          >
-            {link.label}
-          </Link>
-        ))}
+        <Link href="/" className="text-muted-foreground transition-colors hover:text-foreground">
+          Home
+        </Link>
+        <Link href="/shop" className="text-muted-foreground transition-colors hover:text-foreground">
+          Shop
+        </Link>
+        <Link href="/cart" className="text-muted-foreground transition-colors hover:text-foreground">
+          Cart
+        </Link>
       </nav>
     </header>
   );
