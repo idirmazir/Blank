@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 
-import { LoginForm } from "@/components/account/login-form";
+import { SignUpForm } from "@/components/account/signup-form";
 import {
   Card,
   CardContent,
@@ -13,30 +13,29 @@ import {
 import { buttonVariants } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "Sign in",
+  title: "Create account",
 };
 
-export default function LoginPage() {
+export default function SignUpPage() {
   return (
     <div className="mx-auto flex w-full max-w-md flex-col gap-6 px-4 py-16">
       <Card>
         <CardHeader>
-          <CardTitle>Sign in</CardTitle>
+          <CardTitle>Create account</CardTitle>
           <CardDescription>
-            Track orders and manage your account. Guest checkout stays available
-            when payments launch.
+            Sign up to track orders and check out faster.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <Suspense fallback={<p className="text-sm text-muted-foreground">Loading…</p>}>
-            <LoginForm />
+            <SignUpForm />
           </Suspense>
         </CardContent>
       </Card>
       <div className="text-center text-sm text-muted-foreground">
-        Don&apos;t have an account?{" "}
-        <Link href="/account/signup" className="text-foreground underline">
-          Create one
+        Already have an account?{" "}
+        <Link href="/account/login" className="text-foreground underline">
+          Sign in
         </Link>
       </div>
       <Link href="/shop" className={buttonVariants({ variant: "ghost", size: "sm" })}>
