@@ -10,7 +10,7 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/70 backdrop-blur-xl">
       <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
         <div className="flex items-center gap-8">
-          <Link href="/" className="text-sm font-semibold uppercase tracking-[0.2em]">
+          <Link href="/" className="text-base font-semibold tracking-tight">
             Blank
           </Link>
           <nav className="hidden items-center gap-6 text-sm sm:flex">

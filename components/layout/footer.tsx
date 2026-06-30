@@ -6,7 +6,7 @@ export function Footer() {
       <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-3">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em]">Blank</p>
+            <p className="text-base font-semibold tracking-tight">Blank</p>
             <p className="text-sm leading-relaxed text-muted-foreground">
               Substance over status. Quality essentials, sourced directly from makers.
             </p>
