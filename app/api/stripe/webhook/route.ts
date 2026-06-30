@@ -73,28 +73,19 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
     return;
   }
 
-  // Shipping address
-  const shippingAddress = session.shipping_details?.address
+  // Shipping address — use customer_details as fallback
+  const addr = session.customer_details?.address;
+  const shippingAddress = addr
     ? {
-        line1: session.shipping_details.address.line1,
-        line2: session.shipping_details.address.line2,
-        city: session.shipping_details.address.city,
-        state: session.shipping_details.address.state,
-        postal_code: session.shipping_details.address.postal_code,
-        country: session.shipping_details.address.country,
-        name: session.shipping_details.name,
+        name: session.customer_details?.name || email,
+        line1: addr.line1,
+        line2: addr.line2,
+        city: addr.city,
+        state: addr.state,
+        postal_code: addr.postal_code,
+        country: addr.country,
       }
-    : session.shipping
-      ? {
-          name: session.shipping.name,
-          line1: session.shipping.address?.line1,
-          line2: session.shipping.address?.line2,
-          city: session.shipping.address?.city,
-          state: session.shipping.address?.state,
-          postal_code: session.shipping.address?.postal_code,
-          country: session.shipping.address?.country,
-        }
-      : null;
+    : null;
 
   // Create order
   const { data: order, error: orderError } = await supabase
