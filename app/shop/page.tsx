@@ -32,17 +32,22 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
   }
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:py-20">
-      <div className="mb-12 space-y-4">
+    <div className="mx-auto w-full max-w-7xl px-6 py-20 sm:px-10 sm:py-24">
+      <div className="mb-16 space-y-6">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">Shop</h1>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.35em] text-muted-foreground">
+            Collection
+          </p>
+          <h1 className="text-[clamp(2rem,4vw,3rem)] font-medium tracking-tight">
+            {category ? formatCategory(category) : "All products"}
+          </h1>
+          <p className="mt-3 text-sm text-muted-foreground">
             {category
               ? `Showing ${formatCategory(category)}.`
               : "Browse the full collection."}
           </p>
         </div>
-        <Suspense fallback={<div className="h-8 animate-pulse rounded-lg bg-muted" />}>
+        <Suspense fallback={<div className="h-8 animate-pulse bg-muted" />}>
           <CategoryFilter categories={categories} activeCategory={category} />
         </Suspense>
       </div>

@@ -2,7 +2,6 @@
 
 import { Minus, Plus, X } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { formatAud } from "@/lib/format";
 import type { CartItem } from "@/lib/cart/types";
 import { useCart } from "@/lib/cart/context";
@@ -12,9 +11,8 @@ export function CartLineItem({ item }: { item: CartItem }) {
   const atMaxStock = item.quantity >= item.stock;
 
   return (
-    <div className="flex gap-4 py-4 first:pt-0">
-      {/* Image */}
-      <div className="relative size-16 shrink-0 overflow-hidden rounded-md bg-muted">
+    <div className="flex gap-5 py-6">
+      <div className="relative size-20 shrink-0 overflow-hidden bg-neutral-100">
         {item.imageUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -25,9 +23,8 @@ export function CartLineItem({ item }: { item: CartItem }) {
         ) : null}
       </div>
 
-      {/* Details */}
       <div className="flex min-w-0 flex-1 flex-col justify-between">
-        <div className="flex items-start justify-between gap-2">
+        <div className="flex items-start justify-between gap-3">
           <p className="truncate text-sm font-medium">{item.name}</p>
           <p className="shrink-0 text-sm font-medium tabular-nums">
             {formatAud(item.priceCents * item.quantity)}
@@ -36,37 +33,31 @@ export function CartLineItem({ item }: { item: CartItem }) {
 
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-1">
-            <Button
+            <button
               type="button"
-              variant="ghost"
-              size="icon"
-              className="size-7 text-muted-foreground"
+              className="flex size-8 items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
               onClick={() => setQuantity(item.productId, item.quantity - 1)}
             >
               <Minus className="size-3" />
-            </Button>
-            <span className="w-7 text-center text-sm tabular-nums">{item.quantity}</span>
-            <Button
+            </button>
+            <span className="w-8 text-center text-sm tabular-nums">{item.quantity}</span>
+            <button
               type="button"
-              variant="ghost"
-              size="icon"
-              className="size-7 text-muted-foreground"
+              className="flex size-8 items-center justify-center text-muted-foreground transition-colors hover:text-foreground disabled:opacity-30"
               disabled={atMaxStock}
               onClick={() => setQuantity(item.productId, item.quantity + 1)}
             >
               <Plus className="size-3" />
-            </Button>
+            </button>
           </div>
 
-          <Button
+          <button
             type="button"
-            variant="ghost"
-            size="icon"
-            className="size-7 text-muted-foreground hover:text-destructive"
+            className="flex size-8 items-center justify-center text-muted-foreground transition-colors hover:text-destructive"
             onClick={() => removeItem(item.productId)}
           >
             <X className="size-3.5" />
-          </Button>
+          </button>
         </div>
       </div>
     </div>

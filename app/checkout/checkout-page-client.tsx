@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { buttonVariants } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useCart } from "@/lib/cart/context";
 import { cn } from "@/lib/utils";
 
@@ -38,7 +37,6 @@ export function CheckoutPageClient() {
         return;
       }
 
-      // Redirect to Stripe Checkout
       clearCart();
       router.push(data.url);
     } catch {
@@ -53,63 +51,62 @@ export function CheckoutPageClient() {
 
   if (items.length === 0) {
     return (
-      <Card>
-        <CardHeader>
-          <CardTitle>Your cart is empty</CardTitle>
-          <CardDescription>Add items before checking out.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <a href="/shop" className={buttonVariants()}>
-            Continue shopping
-          </a>
-        </CardContent>
-      </Card>
+      <div className="mx-auto max-w-md px-6 py-32 text-center">
+        <h2 className="text-xl font-medium tracking-tight">Your cart is empty</h2>
+        <p className="mt-3 text-sm text-muted-foreground">Add items before checking out.</p>
+        <a href="/shop" className={cn(buttonVariants(), "mt-8 inline-block px-8")}>
+          Continue shopping
+        </a>
+      </div>
     );
   }
 
   return (
-    <div className="mx-auto w-full max-w-lg px-4 py-16">
-      <Card>
-        <CardHeader>
-          <CardTitle>Checkout</CardTitle>
-          <CardDescription>
-            You&apos;ll be redirected to Stripe to complete your payment securely.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="space-y-2">
-            {items.map((item) => (
-              <div key={item.productId} className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">
-                  {item.name} × {item.quantity}
-                </span>
-                <span className="font-medium">
-                  ${((item.priceCents * item.quantity) / 100).toFixed(2)}
-                </span>
-              </div>
-            ))}
-          </div>
+    <div className="mx-auto w-full max-w-lg px-6 py-20 sm:px-10">
+      <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.35em] text-muted-foreground">
+        Checkout
+      </p>
+      <h1 className="mb-12 text-[clamp(1.5rem,3vw,2rem)] font-medium tracking-tight">
+        Complete your order
+      </h1>
 
-          <div className="border-t pt-4 flex items-center justify-between">
-            <span className="text-sm font-medium">Total</span>
-            <span className="text-lg font-semibold">
-              ${(subtotalCents / 100).toFixed(2)}
-            </span>
-          </div>
+      <div className="space-y-6">
+        <div className="space-y-3">
+          {items.map((item) => (
+            <div key={item.productId} className="flex items-center justify-between text-sm">
+              <span className="text-muted-foreground">
+                {item.name} × {item.quantity}
+              </span>
+              <span className="font-medium tabular-nums">
+                ${((item.priceCents * item.quantity) / 100).toFixed(2)}
+              </span>
+            </div>
+          ))}
+        </div>
 
-          {error && (
-            <p className="text-sm text-destructive">{error}</p>
-          )}
+        <div className="flex items-center justify-between pt-6">
+          <span className="text-sm font-medium">Total</span>
+          <span className="text-lg font-medium tabular-nums">
+            ${(subtotalCents / 100).toFixed(2)}
+          </span>
+        </div>
 
-          <button
-            onClick={handleCheckout}
-            disabled={loading}
-            className={cn(buttonVariants(), "w-full justify-center")}
-          >
-            {loading ? "Redirecting…" : "Pay with Stripe"}
-          </button>
-        </CardContent>
-      </Card>
+        {error && (
+          <p className="text-sm text-destructive">{error}</p>
+        )}
+
+        <button
+          onClick={handleCheckout}
+          disabled={loading}
+          className={cn(buttonVariants(), "w-full justify-center py-3.5")}
+        >
+          {loading ? "Redirecting…" : "Pay with Stripe"}
+        </button>
+
+        <p className="text-center text-xs text-muted-foreground">
+          You&apos;ll be redirected to Stripe to complete payment securely.
+        </p>
+      </div>
     </div>
   );
 }

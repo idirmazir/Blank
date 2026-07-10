@@ -3,7 +3,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ProductDetail } from "@/components/shop/product-detail";
-import { buttonVariants } from "@/components/ui/button";
 import { getProductBySlug } from "@/lib/db/products";
 import { formatAud } from "@/lib/format";
 
@@ -41,11 +40,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
   }
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 py-10">
-      <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
+    <div className="mx-auto w-full max-w-7xl px-6 py-12 sm:px-10 sm:py-16">
+      <div className="mb-12 flex items-center justify-between">
         <Link
           href="/shop"
-          className={buttonVariants({ variant: "ghost", size: "sm" })}
+          className="link-underline text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground"
         >
           ← Back to shop
         </Link>

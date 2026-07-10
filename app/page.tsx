@@ -1,146 +1,151 @@
-import Link from "next/link";
-
 import { WaitlistForm } from "@/components/landing/waitlist-form";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
 export const metadata = {
-  title: "Blank — Substance over status.",
-  description: "No logos. No slogans. No status symbols. Only substance. Blank curates exceptional essentials sourced directly from manufacturers.",
+  title: "Blank — $89 Grade A Mongolian Cashmere",
+  description:
+    "Same factories as $350+ brands. Without the label tax. Join the waitlist for first access.",
 };
+
+const PRICE_COMPARISON = [
+  { brand: "Scanlan Theodore", price: "$530" },
+  { brand: "Witchery", price: "$349" },
+  { brand: "Country Road", price: "$299" },
+  { brand: "Blank", price: "$89", highlight: true },
+];
 
 export default function HomePage() {
   return (
     <div className="flex flex-col">
-      {/* Hero — full viewport, centered, vast whitespace */}
-      <section className="relative flex min-h-[92vh] items-center justify-center px-4">
+      {/* Hero */}
+      <section className="relative flex min-h-[90vh] items-center justify-center overflow-hidden px-6">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="mb-8 text-[11px] font-medium uppercase tracking-[0.3em] text-muted-foreground">
-            Blank Collective
+          <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.4em] text-muted-foreground">
+            Coming 2026
           </p>
-          <h1 className="text-5xl font-semibold tracking-tight sm:text-7xl md:text-8xl">
-            Substance
+          <h1 className="text-[clamp(2.5rem,8vw,6rem)] font-medium leading-[0.92] tracking-tight">
+            Grade A Mongolian
             <br />
-            <span className="text-muted-foreground">over status.</span>
+            <span className="text-muted-foreground">Cashmere. $89.</span>
           </h1>
-          <p className="mx-auto mt-10 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
-            No logos. No slogans. No status symbols.
-            <br />
-            Only exceptional essentials, sourced directly from the makers.
+          <p className="mx-auto mt-8 max-w-lg text-sm leading-relaxed text-muted-foreground">
+            The same factories that produce for $350+ brands. The same Grade A
+            Mongolian yarn. Without the label tax, the retail markup, or the
+            bullshit.
           </p>
-          <div className="mt-12">
-            <WaitlistForm className="mx-auto max-w-md" />
-          </div>
-          <p className="mt-4 text-xs text-muted-foreground">
-            Be first to know when the first product drops.
-          </p>
-        </div>
-      </section>
 
-      {/* Philosophy — alternating light/dark sections, Apple-style rhythm */}
-      <section className="border-t bg-black py-32 text-white">
-        <div className="mx-auto max-w-4xl px-4">
-          <div className="grid gap-16 sm:grid-cols-2">
-            <div>
-              <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-                The fabric matters.
-              </h2>
-              <p className="mt-4 text-sm leading-relaxed text-white/60">
-                The material matters. The construction matters. The maker matters.
-                The logo does not.
-              </p>
-            </div>
-            <div>
-              <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-                Quality is the new status.
-              </h2>
-              <p className="mt-4 text-sm leading-relaxed text-white/60">
-                For people who would rather own one exceptional thing than ten disposable ones.
-                For people who know the difference.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Principles */}
-      <section className="py-32">
-        <div className="mx-auto max-w-4xl px-4">
-          <p className="mb-16 text-[11px] font-medium uppercase tracking-[0.3em] text-muted-foreground">
-            What we believe
-          </p>
-          <div className="space-y-12">
-            {[
-              { title: "Fewer, better things", body: "We perfect one product rather than offer twenty mediocre alternatives. Fewer colours. Fewer versions. Fewer decisions." },
-              { title: "Direct from makers", body: "No unnecessary intermediaries. No layers of markup disconnected from value. A direct relationship between maker and user." },
-              { title: "Intentional consumption", body: "What you choose matters more than what it is called. Confidence is not worn on the outside." },
-            ].map((item, i) => (
-              <div key={item.title} className="grid grid-cols-[2rem_1fr] gap-6">
-                <span className="text-sm font-medium text-muted-foreground">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h3 className="text-lg font-medium tracking-tight sm:text-xl">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+          {/* Price comparison */}
+          <div className="mx-auto mt-12 max-w-xs">
+            <div className="space-y-1.5">
+              {PRICE_COMPARISON.map((item) => (
+                <div
+                  key={item.brand}
+                  className={`flex items-center justify-between px-4 py-2.5 text-xs ${
+                    item.highlight
+                      ? "bg-neutral-950 text-white font-medium"
+                      : "bg-neutral-50 text-muted-foreground"
+                  }`}
+                >
+                  <span>{item.brand}</span>
+                  <span className="tabular-nums">{item.price}</span>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+            <p className="mt-3 text-[10px] text-muted-foreground/50">
+              100% Grade A Mongolian cashmere. 4-ply. 400g. Women&apos;s crewneck.
+            </p>
+          </div>
+
+          <div className="mt-12">
+            <WaitlistForm className="mx-auto max-w-sm" />
           </div>
         </div>
       </section>
 
-      {/* First Collection — minimal product preview */}
-      <section className="border-t bg-muted/30 py-32">
-        <div className="mx-auto max-w-5xl px-4">
-          <div className="text-center">
-            <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.3em] text-muted-foreground">
-              The first collection
-            </p>
-            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-              Essentials, perfected.
-            </h2>
-            <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
-              The perfect T-shirt. The perfect cashmere knit. The perfect tote.
-              Objects that improve daily life through quality rather than novelty.
-            </p>
-          </div>
-
-          <div className="mt-16 grid gap-px overflow-hidden rounded-lg border bg-border sm:grid-cols-3">
-            {[
-              { name: "Heavyweight Cotton T-Shirt", desc: "The foundation." },
-              { name: "Cashmere Crew Neck", desc: "The essential knit." },
-              { name: "Canvas Tote", desc: "The everyday carry." },
-            ].map((product) => (
-              <div key={product.name} className="bg-background p-10 text-center">
-                <div className="mb-6 mx-auto h-20 w-20 rounded-full bg-muted" />
-                <p className="text-sm font-medium tracking-tight">{product.name}</p>
-                <p className="mt-1 text-xs text-muted-foreground">{product.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-12 text-center">
-            <Link
-              href="/shop"
-              className={cn(buttonVariants({ variant: "outline", size: "lg" }), "gap-2")}
+      {/* Marquee */}
+      <section className="overflow-hidden border-y border-neutral-100 py-5">
+        <div className="flex animate-marquee whitespace-nowrap">
+          {Array.from({ length: 2 }).map((_, i) => (
+            <div
+              key={i}
+              className="flex items-center gap-12 px-6 text-[10px] font-medium uppercase tracking-[0.3em] text-muted-foreground/40"
             >
-              Browse shop
-            </Link>
+              <span>Grade A Mongolian Cashmere</span>
+              <span>·</span>
+              <span>Same Factories as Luxury Brands</span>
+              <span>·</span>
+              <span>No Label Tax</span>
+              <span>·</span>
+              <span>Direct From Makers</span>
+              <span>·</span>
+              <span>$89</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* How */}
+      <section className="bg-neutral-950 py-32 text-white sm:py-40">
+        <div className="mx-auto max-w-5xl px-6 sm:px-10">
+          <p className="mb-20 text-[10px] font-medium uppercase tracking-[0.35em] text-white/30">
+            How it&apos;s possible
+          </p>
+          <div className="grid gap-20 md:grid-cols-3 md:gap-16">
+            {[
+              {
+                title: "Same factories",
+                body: "We source from the exact Mongolian mills that produce for luxury houses. Same yarn. Same hands. Different label.",
+              },
+              {
+                title: "No middlemen",
+                body: "Traditional retail marks up 5-8x. We go factory → you. That's how $55 becomes $89 instead of $349.",
+              },
+              {
+                title: "One product first",
+                body: "We're perfecting a single product before adding anything else. Fewer, better things. Less noise.",
+              },
+            ].map((item) => (
+              <div key={item.title}>
+                <h3 className="text-lg font-medium tracking-tight">
+                  {item.title}
+                </h3>
+                <p className="mt-4 text-sm leading-relaxed text-white/40">
+                  {item.body}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Final CTA — dark, immersive */}
-      <section className="border-t bg-black py-32 text-white">
-        <div className="mx-auto max-w-2xl px-4 text-center">
-          <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-            Blank is not empty.
+      {/* Quote / ethos */}
+      <section className="py-32 sm:py-40">
+        <div className="mx-auto max-w-2xl px-6 text-center sm:px-10">
+          <blockquote className="text-[clamp(1.5rem,3vw,2.5rem)] font-medium leading-tight tracking-tight">
+            &ldquo;Quality is the new status.&rdquo;
+          </blockquote>
+          <p className="mt-8 text-sm leading-relaxed text-muted-foreground">
+            For those who would rather own one exceptional thing than ten
+            disposable ones. For those who know the difference between a label
+            and quality. For those who don&apos;t need a logo to know something is
+            worth wearing.
+          </p>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="bg-neutral-950 py-32 text-white sm:py-40">
+        <div className="mx-auto max-w-xl px-6 text-center sm:px-10">
+          <h2 className="text-[clamp(2rem,5vw,4rem)] font-medium leading-[0.92] tracking-tight">
+            First drop.
+            <br />
+            <span className="text-white/30">Limited units.</span>
           </h2>
-          <p className="mt-4 text-lg text-white/60">
-            Blank is full of intention.
+          <p className="mt-6 text-sm leading-relaxed text-white/40">
+            500 units. When they&apos;re gone, they&apos;re gone. The waitlist gets
+            first access.
           </p>
           <div className="mt-12">
-            <WaitlistForm className="mx-auto max-w-md" />
+            <WaitlistForm className="mx-auto max-w-sm" variant="dark" />
           </div>
         </div>
       </section>

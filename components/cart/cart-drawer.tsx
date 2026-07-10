@@ -35,8 +35,8 @@ export function CartDrawer() {
         }
       />
       <SheetContent className="flex w-full flex-col sm:max-w-md">
-        <SheetHeader className="border-b pb-4">
-          <SheetTitle className="text-base font-medium tracking-tight">
+        <SheetHeader className="pb-4">
+          <SheetTitle className="text-sm font-medium tracking-tight">
             Cart {isHydrated && itemCount > 0 && (
               <span className="ml-1 text-muted-foreground">({itemCount})</span>
             )}
@@ -44,24 +44,24 @@ export function CartDrawer() {
         </SheetHeader>
 
         {isHydrated && items.length === 0 ? (
-          <div className="flex flex-1 flex-col items-center justify-center gap-3 px-4">
-            <div className="flex size-12 items-center justify-center rounded-full bg-muted">
+          <div className="flex flex-1 flex-col items-center justify-center gap-4 px-6">
+            <div className="flex size-12 items-center justify-center bg-neutral-100">
               <ShoppingBag className="size-5 text-muted-foreground" />
             </div>
             <p className="text-sm text-muted-foreground">Your cart is empty.</p>
-            <Link href="/shop" className={cn(buttonVariants({ variant: "outline", size: "sm" }))}>
+            <Link href="/shop" className={cn(buttonVariants({ variant: "outline", size: "sm" }), "px-6")}>
               Browse shop
             </Link>
           </div>
         ) : (
           <>
-            <div className="flex-1 divide-y divide-border/40 overflow-y-auto">
+            <div className="flex-1 overflow-y-auto">
               {items.map((item) => (
                 <CartLineItem key={item.productId} item={item} />
               ))}
             </div>
 
-            <div className="space-y-4 border-t pt-4">
+            <div className="space-y-4 pt-4">
               <div className="flex items-center justify-between">
                 <span className="text-sm text-muted-foreground">Subtotal</span>
                 <span className="text-base font-medium tabular-nums">
@@ -70,16 +70,13 @@ export function CartDrawer() {
               </div>
               <Link
                 href="/checkout"
-                className={cn(buttonVariants(), "w-full justify-center")}
+                className={cn(buttonVariants(), "w-full justify-center py-3.5")}
               >
                 Checkout
               </Link>
               <Link
                 href="/cart"
-                className={cn(
-                  buttonVariants({ variant: "ghost", size: "sm" }),
-                  "w-full justify-center text-muted-foreground",
-                )}
+                className="link-underline w-full text-center text-xs text-muted-foreground"
               >
                 View full cart
               </Link>

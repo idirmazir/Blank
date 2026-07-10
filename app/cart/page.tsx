@@ -2,12 +2,12 @@ import { CartPageClient } from "./cart-page-client";
 
 export default function CartPage() {
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 py-10">
-      <div className="mb-8">
-        <h1 className="text-3xl font-semibold tracking-tight">Cart</h1>
-        <p className="mt-2 text-muted-foreground">
-          Review your items before checkout.
+    <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 sm:py-20">
+      <div className="mb-12">
+        <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.35em] text-muted-foreground">
+          Cart
         </p>
+        <h1 className="text-[clamp(2rem,4vw,3rem)] font-medium tracking-tight">Your cart</h1>
       </div>
       <CartPageClient />
     </div>

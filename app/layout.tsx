@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 import { SiteLayout } from "@/components/layout/site-layout";
-
 import { Providers } from "./providers";
 import "./globals.css";
 

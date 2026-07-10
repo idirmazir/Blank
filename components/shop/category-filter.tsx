@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 
-import { buttonVariants } from "@/components/ui/button";
 import { formatCategory } from "@/lib/format";
 import { cn } from "@/lib/utils";
 
@@ -29,14 +28,14 @@ export function CategoryFilter({
   }
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-3">
       <Link
         href={hrefFor()}
         className={cn(
-          buttonVariants({
-            variant: activeCategory ? "outline" : "default",
-            size: "sm",
-          }),
+          "px-4 py-2 text-xs font-medium uppercase tracking-[0.15em] transition-all",
+          activeCategory
+            ? "text-muted-foreground hover:text-foreground"
+            : "bg-neutral-950 text-white"
         )}
       >
         All
@@ -46,10 +45,10 @@ export function CategoryFilter({
           key={category}
           href={hrefFor(category)}
           className={cn(
-            buttonVariants({
-              variant: activeCategory === category ? "default" : "outline",
-              size: "sm",
-            }),
+            "px-4 py-2 text-xs font-medium uppercase tracking-[0.15em] transition-all",
+            activeCategory === category
+              ? "bg-neutral-950 text-white"
+              : "text-muted-foreground hover:text-foreground"
           )}
         >
           {formatCategory(category)}
